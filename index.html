@@ -117,13 +117,13 @@
         #main-content {
             flex: 1;
             position: relative;
-            display: block; /* Changed from flex to block to fix overflow clipping */
+            display: block; 
             padding: 3rem 4rem;
             overflow-y: auto;
         }
 
         #slide-counter {
-            position: fixed; /* Changed to fixed so it stays in the corner while scrolling */
+            position: fixed; 
             top: 2rem;
             right: 3rem;
             font-family: 'Fira Code', monospace;
@@ -139,8 +139,8 @@
             display: none;
             width: 100%;
             max-width: 1200px;
-            min-height: 100%; /* Ensures vertical centering for short slides, allows expansion for tall ones */
-            margin: 0 auto; /* Centers slide horizontally */
+            min-height: 100%; 
+            margin: 0 auto; 
             flex-direction: column;
             justify-content: center;
             padding: 2rem 0;
@@ -157,6 +157,17 @@
         @keyframes slideInUpFade {
             from { opacity: 0; transform: translateY(40px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Try and Test Animation */
+        @keyframes pulseLab {
+            0% { transform: scale(0.9); opacity: 0.5; }
+            100% { transform: scale(1.1); opacity: 0.8; }
+        }
+        .lab-bg {
+            position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; 
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 50%); 
+            animation: pulseLab 4s infinite alternate; z-index: 0; pointer-events: none;
         }
 
         /* Typography */
@@ -456,7 +467,7 @@
 
     <!-- Main Presentation Area -->
     <main id="main-content">
-        <div id="slide-counter">1/26</div>
+        <div id="slide-counter">1/32</div>
 
         <!-- ========================================== -->
         <!-- CHAPTER 1: SESSION GOALS                   -->
@@ -932,6 +943,34 @@
         </div>
 
         <!-- ========================================== -->
+        <!-- LAB SESSION 1                              -->
+        <!-- ========================================== -->
+        <div class="slide" data-chapter="7">
+            <div class="subtitle" style="color: var(--accent-secondary);">Hands-On Lab</div>
+            <h2 style="font-size: 3.2rem; margin-bottom: 0.5rem; color: var(--accent-secondary);">Try & Test</h2>
+            <p class="large" style="margin-bottom: 2.5rem;">It's time to experiment. Take the concepts we just explored and apply them to your own practice.</p>
+            
+            <div style="background: rgba(16, 185, 129, 0.05); border: 1px dashed var(--accent-secondary); padding: 4rem 3rem; border-radius: 16px; text-align: center; position: relative; overflow: hidden; box-shadow: inset 0 0 40px rgba(0,0,0,0.2);">
+                <div class="lab-bg"></div>
+                
+                <div style="position: relative; z-index: 1;">
+                    <div style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem;">
+                        <svg class="svg-icon" style="width: 4rem; height: 4rem; color: var(--accent-primary);" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                        <svg class="svg-icon" style="width: 4.5rem; height: 4.5rem; color: var(--accent-secondary);" viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0H5a2 2 0 0 1-2-2v-4m6 6h10a2 2 0 0 0 2-2v-4m0-10V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                        <svg class="svg-icon" style="width: 4rem; height: 4rem; color: var(--accent-warning);" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                    <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; color: var(--text-main);">Your Mission</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0; font-size: 1.2rem; color: var(--text-main); line-height: 1.8; text-align: left; display: inline-block;">
+                        <li style="margin-bottom: 0.8rem;"><b style="color: var(--accent-secondary);">1.</b> Open <b>Gemini</b> or <b>NotebookLM</b>.</li>
+                        <li style="margin-bottom: 0.8rem;"><b style="color: var(--accent-secondary);">2.</b> Consider what we just learned and try something out!</li>
+                        <li style="margin-bottom: 0.8rem;"><b style="color: var(--accent-secondary);">3.</b> Apply the <b>4P Framework</b> (Prepare, Prime, Partner, Polish).</li>
+                        <li><b style="color: var(--accent-secondary);">4.</b> Share your successes (or failures!) with your table.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
         <!-- CHAPTER 8: MULTIMODAL AI & UDL             -->
         <!-- ========================================== -->
         
@@ -1206,6 +1245,34 @@
             </div>
         </div>
 
+        <!-- ========================================== -->
+        <!-- LAB SESSION 2                              -->
+        <!-- ========================================== -->
+        <div class="slide" data-chapter="9">
+            <div class="subtitle" style="color: var(--accent-secondary);">Hands-On Lab</div>
+            <h2 style="font-size: 3.2rem; margin-bottom: 0.5rem; color: var(--accent-secondary);">Try & Test</h2>
+            <p class="large" style="margin-bottom: 2.5rem;">It's time to experiment. Take the concepts we just explored and apply them to your own practice.</p>
+            
+            <div style="background: rgba(16, 185, 129, 0.05); border: 1px dashed var(--accent-secondary); padding: 4rem 3rem; border-radius: 16px; text-align: center; position: relative; overflow: hidden; box-shadow: inset 0 0 40px rgba(0,0,0,0.2);">
+                <div class="lab-bg"></div>
+                
+                <div style="position: relative; z-index: 1;">
+                    <div style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem;">
+                        <svg class="svg-icon" style="width: 4rem; height: 4rem; color: var(--accent-primary);" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                        <svg class="svg-icon" style="width: 4.5rem; height: 4.5rem; color: var(--accent-secondary);" viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0H5a2 2 0 0 1-2-2v-4m6 6h10a2 2 0 0 0 2-2v-4m0-10V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                        <svg class="svg-icon" style="width: 4rem; height: 4rem; color: var(--accent-warning);" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                    <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; color: var(--text-main);">Your Mission</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0; font-size: 1.2rem; color: var(--text-main); line-height: 1.8; text-align: left; display: inline-block;">
+                        <li style="margin-bottom: 0.8rem;"><b style="color: var(--accent-secondary);">1.</b> Open <b>Gemini</b> or <b>NotebookLM</b>.</li>
+                        <li style="margin-bottom: 0.8rem;"><b style="color: var(--accent-secondary);">2.</b> Consider what we just learned and try something out!</li>
+                        <li style="margin-bottom: 0.8rem;"><b style="color: var(--accent-secondary);">3.</b> Apply the <b>4P Framework</b> (Prepare, Prime, Partner, Polish).</li>
+                        <li><b style="color: var(--accent-secondary);">4.</b> Share your successes (or failures!) with your table.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
         <div class="slide" data-chapter="9">
             <div class="subtitle">Advanced Research</div>
             <h2>Deep Research Agents</h2>
@@ -1403,6 +1470,34 @@
         </div>
 
         <!-- ========================================== -->
+        <!-- LAB SESSION 3                              -->
+        <!-- ========================================== -->
+        <div class="slide" data-chapter="10">
+            <div class="subtitle" style="color: var(--accent-secondary);">Hands-On Lab</div>
+            <h2 style="font-size: 3.2rem; margin-bottom: 0.5rem; color: var(--accent-secondary);">Try & Test</h2>
+            <p class="large" style="margin-bottom: 2.5rem;">It's time to experiment. Take the concepts we just explored and apply them to your own practice.</p>
+            
+            <div style="background: rgba(16, 185, 129, 0.05); border: 1px dashed var(--accent-secondary); padding: 4rem 3rem; border-radius: 16px; text-align: center; position: relative; overflow: hidden; box-shadow: inset 0 0 40px rgba(0,0,0,0.2);">
+                <div class="lab-bg"></div>
+                
+                <div style="position: relative; z-index: 1;">
+                    <div style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem;">
+                        <svg class="svg-icon" style="width: 4rem; height: 4rem; color: var(--accent-primary);" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                        <svg class="svg-icon" style="width: 4.5rem; height: 4.5rem; color: var(--accent-secondary);" viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0H5a2 2 0 0 1-2-2v-4m6 6h10a2 2 0 0 0 2-2v-4m0-10V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                        <svg class="svg-icon" style="width: 4rem; height: 4rem; color: var(--accent-warning);" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                    <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; color: var(--text-main);">Your Mission</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0; font-size: 1.2rem; color: var(--text-main); line-height: 1.8; text-align: left; display: inline-block;">
+                        <li style="margin-bottom: 0.8rem;"><b style="color: var(--accent-secondary);">1.</b> Open <b>Gemini</b> or <b>NotebookLM</b>.</li>
+                        <li style="margin-bottom: 0.8rem;"><b style="color: var(--accent-secondary);">2.</b> Consider what we just learned and try something out!</li>
+                        <li style="margin-bottom: 0.8rem;"><b style="color: var(--accent-secondary);">3.</b> Apply the <b>4P Framework</b> (Prepare, Prime, Partner, Polish).</li>
+                        <li><b style="color: var(--accent-secondary);">4.</b> Share your successes (or failures!) with your table.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
         <!-- CHAPTER 11: ORCHESTRATING AI               -->
         <!-- ========================================== -->
 
@@ -1595,6 +1690,51 @@
                                 <li>Use "Vibe Coding" to generate a working Google Apps Script.</li>
                                 <li>Create a NotebookLM Studio briefing synthesizing 5+ academic PDFs.</li>
                             </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- GIFT OF TIME SESSION                       -->
+        <!-- ========================================== -->
+
+        <div class="slide" data-chapter="12">
+            <div class="subtitle" style="color: var(--accent-primary);">Dedicated Work Session</div>
+            <h2 style="font-size: 3.5rem; margin-bottom: 0.5rem; color: var(--accent-primary);">Gift of Time</h2>
+            <p class="large" style="margin-bottom: 2.5rem;">Take the remainder of our session to apply the 4P Framework and AI tools to your own context. We are here to help you prompt, troubleshoot, and co-create.</p>
+            
+            <div style="background: rgba(59, 130, 246, 0.05); border: 1px dashed var(--accent-primary); padding: 3.5rem 3rem; border-radius: 16px; position: relative; overflow: hidden; box-shadow: inset 0 0 40px rgba(0,0,0,0.2);">
+                <div class="lab-bg" style="background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 60%); animation-duration: 6s;"></div>
+                
+                <div style="position: relative; z-index: 1;">
+                    <h3 style="font-size: 1.6rem; margin-bottom: 2rem; color: var(--text-main); text-align: center; text-transform: uppercase; letter-spacing: 2px;">What are you building today?</h3>
+                    
+                    <div class="grid-2" style="margin-top: 0; gap: 1.5rem;">
+                        <div style="background: rgba(13, 17, 23, 0.8); backdrop-filter: blur(4px); padding: 1.5rem; border-left: 4px solid var(--accent-secondary); border-radius: 8px; display: flex; align-items: center; gap: 1.5rem; transition: transform 0.2s; cursor: default;" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='none'">
+                            <div style="background: rgba(16, 185, 129, 0.15); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0;">📝</div>
+                            <span style="font-size: 1.1rem; line-height: 1.4; color: var(--text-main);">A <b>lesson, project or unit</b> you’re currently designing.</span>
+                        </div>
+                        
+                        <div style="background: rgba(13, 17, 23, 0.8); backdrop-filter: blur(4px); padding: 1.5rem; border-left: 4px solid var(--accent-warning); border-radius: 8px; display: flex; align-items: center; gap: 1.5rem; transition: transform 0.2s; cursor: default;" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='none'">
+                            <div style="background: rgba(245, 158, 11, 0.15); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0;">🧩</div>
+                            <span style="font-size: 1.1rem; line-height: 1.4; color: var(--text-main);">A <b>resource</b> you want to differentiate for diverse learners.</span>
+                        </div>
+                        
+                        <div style="background: rgba(13, 17, 23, 0.8); backdrop-filter: blur(4px); padding: 1.5rem; border-left: 4px solid var(--accent-danger); border-radius: 8px; display: flex; align-items: center; gap: 1.5rem; transition: transform 0.2s; cursor: default;" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='none'">
+                            <div style="background: rgba(239, 68, 68, 0.15); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0;">✅</div>
+                            <span style="font-size: 1.1rem; line-height: 1.4; color: var(--text-main);">An <b>assessment</b> you’d like to build or revise.</span>
+                        </div>
+                        
+                        <div style="background: rgba(13, 17, 23, 0.8); backdrop-filter: blur(4px); padding: 1.5rem; border-left: 4px solid var(--accent-primary); border-radius: 8px; display: flex; align-items: center; gap: 1.5rem; transition: transform 0.2s; cursor: default;" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='none'">
+                            <div style="background: rgba(59, 130, 246, 0.15); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0;">🗺️</div>
+                            <span style="font-size: 1.1rem; line-height: 1.4; color: var(--text-main);">A <b>curriculum document</b> you would like to use to build instructional plans.</span>
+                        </div>
+                        
+                        <div style="background: rgba(13, 17, 23, 0.8); backdrop-filter: blur(4px); padding: 1.5rem; border-left: 4px solid var(--accent-purple); border-radius: 8px; display: flex; align-items: center; gap: 1.5rem; grid-column: span 2; width: 80%; margin: 0 auto; transition: transform 0.2s; cursor: default;" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='none'">
+                            <div style="background: rgba(139, 92, 246, 0.15); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0;">📚</div>
+                            <span style="font-size: 1.1rem; line-height: 1.4; color: var(--text-main);">A stack of PDFs, articles, notes and other resources you want to turn into a <b>NotebookLM study guide</b>.</span>
                         </div>
                     </div>
                 </div>
