@@ -453,6 +453,27 @@
         .pl-item.active .pl-date-badge { background: var(--accent-primary); color: #fff; }
         .pl-content { display: none; animation: fadeIn 0.4s; }
 
+        /* Features Tabs */
+        .features-tabs { display: flex; gap: 1rem; margin-bottom: 1.5rem; border-bottom: 1px solid #30363D; padding-bottom: 1rem; justify-content: center; }
+        .feature-tab { background: transparent; border: 1px solid transparent; color: var(--text-muted); font-size: 1.2rem; font-weight: 600; cursor: pointer; padding: 0.5rem 1.5rem; transition: all 0.2s; border-radius: 8px; outline: none; display: flex; align-items: center; }
+        .feature-tab:hover { background: rgba(255,255,255,0.05); color: var(--text-main); }
+        .feature-tab.active { background: #161B22; color: var(--text-main); border: 1px solid #30363D; border-bottom: 3px solid var(--accent-primary); }
+        .feature-tab.active-gemini { border-bottom-color: var(--accent-primary); }
+        .feature-tab.active-notebook { border-bottom-color: var(--accent-purple); }
+        
+        .features-content { display: none; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; max-height: 50vh; overflow-y: auto; padding-right: 0.5rem; }
+        .features-content::-webkit-scrollbar { width: 6px; }
+        .features-content::-webkit-scrollbar-track { background: #0D1117; border-radius: 4px; }
+        .features-content::-webkit-scrollbar-thumb { background: #30363D; border-radius: 4px; }
+        .features-content.active { display: grid; animation: fadeIn 0.4s; }
+        
+        .feature-item { background: #0D1117; border: 1px solid #1F2937; padding: 1.2rem; border-radius: 12px; border-top: 4px solid var(--text-muted); transition: transform 0.2s; display: flex; flex-direction: column; }
+        .feature-item:hover { transform: translateY(-3px); border-color: #374151; }
+        .feature-item.gemini { border-top-color: var(--accent-primary); }
+        .feature-item.notebook { border-top-color: var(--accent-purple); }
+        .feature-item h4 { font-size: 1.1rem; color: var(--text-main); margin-bottom: 0.5rem; font-weight: 600; }
+        .feature-item p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; margin: 0; flex: 1; }
+
     </style>
 </head>
 <body>
@@ -467,7 +488,7 @@
 
     <!-- Main Presentation Area -->
     <main id="main-content">
-        <div id="slide-counter">1/32</div>
+        <div id="slide-counter">1/33</div>
 
         <!-- ========================================== -->
         <!-- CHAPTER 1: SESSION GOALS                   -->
@@ -1697,6 +1718,85 @@
         </div>
 
         <!-- ========================================== -->
+        <!-- FEATURES WORTH EXPLORING                   -->
+        <!-- ========================================== -->
+
+        <div class="slide" data-chapter="12">
+            <div class="subtitle">Looking Ahead</div>
+            <h2>Features Worth Exploring</h2>
+            <p class="large" style="margin-bottom: 2rem;">While we focused on core competencies today, both Gemini and NotebookLM offer advanced capabilities. Here are a few powerful features worth exploring when you have more time to dig in.</p>
+            
+            <div class="features-tabs">
+                <button class="feature-tab active active-gemini" onclick="switchFeatureTab(event, 'gemini')">
+                    <svg class="svg-icon" style="width:1.5rem; height:1.5rem; margin-right:0.5rem; color:var(--accent-primary);" viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
+                    Google Gemini
+                </button>
+                <button class="feature-tab" onclick="switchFeatureTab(event, 'notebook')">
+                    <svg class="svg-icon" style="width:1.5rem; height:1.5rem; margin-right:0.5rem; color:var(--accent-purple);" viewBox="0 0 24 24"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+                    NotebookLM
+                </button>
+            </div>
+
+            <div id="features-gemini" class="features-content active">
+                <div class="feature-item gemini">
+                    <h4>Workspace Integration</h4>
+                    <p>Gemini integrates directly into Google Workspace to seamlessly pull context from emails, draft documents, and automate data in Sheets.</p>
+                </div>
+                <div class="feature-item gemini">
+                    <h4>Gemini Live</h4>
+                    <p>This feature allows users to have free-flowing, real-time voice conversations with the AI, complete with the ability to interrupt and ask follow-up questions.</p>
+                </div>
+                <div class="feature-item gemini">
+                    <h4>Google Classroom Collaboration</h4>
+                    <p>Educators can leverage Gemini directly within Google Classroom to design assignments, generate rubrics, and summarize student progress.</p>
+                </div>
+                <div class="feature-item gemini">
+                    <h4>Guided Learning</h4>
+                    <p>Gemini acts as a personal learning companion by breaking down complex concepts step-by-step and asking probing questions to develop critical thinking rather than just giving the final answer.</p>
+                </div>
+                <div class="feature-item gemini">
+                    <h4>Image Creation</h4>
+                    <p>Powered by advanced image models, Gemini can instantly generate high-quality, custom visuals and artwork based on detailed text descriptions.</p>
+                </div>
+                <div class="feature-item gemini">
+                    <h4>Video Creation</h4>
+                    <p>Using the Veo 3.1 model, Gemini allows users to generate short, high-quality video clips directly from text prompts or reference images to enhance digital storytelling.</p>
+                </div>
+                <div class="feature-item gemini">
+                    <h4>Music Creation</h4>
+                    <p>Powered by Lyria 3, Gemini can generate custom 30-second music tracks complete with instrumentals, vocals, and lyrics based on simple text descriptions or uploaded photos.</p>
+                </div>
+            </div>
+
+            <div id="features-notebook" class="features-content">
+                <div class="feature-item notebook">
+                    <h4>Flashcards and Quizzes</h4>
+                    <p>The platform can automatically generate interactive study aids, such as flashcards and multiple-choice quizzes, strictly based on the user's uploaded documents.</p>
+                </div>
+                <div class="feature-item notebook">
+                    <h4>Cinematic Video Overviews</h4>
+                    <p>NotebookLM can transform document summaries into dynamic, documentary-style animated videos with AI narration and rich visuals.</p>
+                </div>
+                <div class="feature-item notebook">
+                    <h4>Learning Guide</h4>
+                    <p>This feature acts as a personalized tutor by analyzing source documents to create comprehensive study guides that adapt to the user's specific learning needs.</p>
+                </div>
+                <div class="feature-item notebook">
+                    <h4>Mind Maps and Timelines</h4>
+                    <p>Users can generate visual mind maps to identify recurring themes or chronological timelines to track developments across multiple research sources.</p>
+                </div>
+                <div class="feature-item notebook">
+                    <h4>Data Tables</h4>
+                    <p>The AI can extract qualitative information from dense text sources and automatically organize it into an easily digestible, structured comparison grid.</p>
+                </div>
+                <div class="feature-item notebook">
+                    <h4>EPUB Support</h4>
+                    <p>Users can upload full EPUB book files into their workspace for rapid summarization, in-depth querying, and the creation of Audio Overviews.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
         <!-- GIFT OF TIME SESSION                       -->
         <!-- ========================================== -->
 
@@ -2186,6 +2286,24 @@
         document.querySelector('.draggables-sidebar').addEventListener('dragover', allowDrop);
         document.querySelector('.draggables-sidebar').addEventListener('drop', drop);
         document.addEventListener('dragend', function() { if(draggedItem) { draggedItem.style.opacity = "1"; draggedItem = null; }});
+
+        // ==========================================
+        // FEATURES TABS LOGIC
+        // ==========================================
+        function switchFeatureTab(event, tabId) {
+            const tabsContainer = event.currentTarget.closest('.slide');
+            
+            tabsContainer.querySelectorAll('.feature-tab').forEach(t => {
+                t.classList.remove('active');
+                t.classList.remove('active-gemini');
+                t.classList.remove('active-notebook');
+            });
+            tabsContainer.querySelectorAll('.features-content').forEach(c => c.classList.remove('active'));
+            
+            event.currentTarget.classList.add('active');
+            event.currentTarget.classList.add('active-' + tabId);
+            tabsContainer.querySelector('#features-' + tabId).classList.add('active');
+        }
 
     </script>
 </body>
