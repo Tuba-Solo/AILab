@@ -1332,11 +1332,11 @@
                     <!-- Custom PDF Viewer Controls -->
                     <div style="background: #161B22; padding: 0.75rem 1.5rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #30363D; z-index: 2;">
                         <div style="display: flex; gap: 0.5rem;">
-                            <button class="copy-btn" onclick="onPrevPage()">
+                            <button class="copy-btn" onclick="prevPdfPage('main')">
                                 <svg class="svg-icon" style="width: 1rem; height: 1rem;" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
                                 Prev Slide
                             </button>
-                            <button class="copy-btn" onclick="onNextPage()">
+                            <button class="copy-btn" onclick="nextPdfPage('main')">
                                 Next Slide
                                 <svg class="svg-icon" style="width: 1rem; height: 1rem;" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
                             </button>
@@ -1356,11 +1356,76 @@
                         <canvas id="the-canvas" style="max-width: 100%; max-height: 100%; object-fit: contain;"></canvas>
                         
                         <!-- Fallback Error UI if local files block PDF.js -->
-                        <div id="pdf-error" style="display: none; position: absolute; inset: 0; background: #0D1117; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2rem; z-index: 10;">
+                        <div class="pdf-error-overlay" style="display: none; position: absolute; inset: 0; background: #0D1117; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2rem; z-index: 10;">
                             <svg class="svg-icon" style="color: var(--accent-warning); width: 3rem; height: 3rem; margin-bottom: 1rem;" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
                             <p style="color: var(--text-main); font-size: 1.2rem; font-weight: 600; margin-bottom: 0.5rem;">Local File Security Restriction</p>
                             <p style="color: var(--text-muted); max-width: 500px; margin-bottom: 1.5rem; line-height: 1.5;">Browsers prevent reading local PDF files via scripts for security reasons. To view this inline, run the presentation on a local web server (like VSCode Live Server), or click below to open it natively.</p>
                             <a href="EIPS_AI_Blueprint.pdf" target="_blank" style="background: var(--accent-primary); color: white; padding: 0.8rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: bold; transition: opacity 0.2s;">Open PDF Native Viewer</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide" data-chapter="9" style="height: 100%; max-height: 100%;">
+            <div class="subtitle" style="flex-shrink: 0;">Further Reading</div>
+            <h2 style="flex-shrink: 0; margin-bottom: 1rem;">Learn More About AI and Differentiation</h2>
+            <p class="large" style="margin-bottom: 1.5rem; flex-shrink: 0;">Explore practical strategies and examples of how to use Generative AI to adapt classroom resources to meet diverse learner needs.</p>
+            
+            <div class="grid-2" style="flex: 1; min-height: 0; margin-top: 0; gap: 1.5rem;">
+                
+                <!-- Slides PDF Viewer -->
+                <div class="card-base" id="pdf-fs-slides" style="flex: 1; padding: 0; border: 2px solid #30363D; overflow: hidden; background: #0D1117; display: flex; flex-direction: column; position: relative;">
+                    <div style="background: #161B22; padding: 0.75rem 1.5rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #30363D; z-index: 2;">
+                        <div style="display: flex; gap: 0.5rem;">
+                            <button class="copy-btn" onclick="prevPdfPage('slides')">
+                                <svg class="svg-icon" style="width: 1rem; height: 1rem;" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg> Prev
+                            </button>
+                            <button class="copy-btn" onclick="nextPdfPage('slides')">
+                                Next <svg class="svg-icon" style="width: 1rem; height: 1rem;" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+                            </button>
+                        </div>
+                        <span id="page_num_slides" style="font-family: 'Fira Code', monospace; color: var(--text-muted); font-size: 0.9rem; font-weight: 600;">Slide - / -</span>
+                        <button class="copy-btn fs-expand-btn" onclick="toggleNativeFS('pdf-fs-slides')">
+                            <svg class="svg-icon" style="width: 1rem; height: 1rem;" viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg> Fullscreen
+                        </button>
+                        <button class="copy-btn fs-close-btn" onclick="toggleNativeFS('pdf-fs-slides')" style="display: none;">Close Fullscreen</button>
+                    </div>
+                    <div style="flex: 1; overflow: hidden; display: flex; justify-content: center; align-items: center; background: #06090F; position: relative; padding: 1rem;">
+                        <canvas id="canvas-slides" style="max-width: 100%; max-height: 100%; object-fit: contain; aspect-ratio: 16/9;"></canvas>
+                        
+                        <div class="pdf-error-overlay" style="display: none; position: absolute; inset: 0; background: #0D1117; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2rem; z-index: 10;">
+                            <svg class="svg-icon" style="color: var(--accent-warning); width: 3rem; height: 3rem; margin-bottom: 1rem;" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
+                            <p style="color: var(--text-main); font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem;">Local File Security Restriction</p>
+                            <a href="Using Generative AI to Adapt Classroom Resources to Meet Diverse Needs SLIDES.pdf" target="_blank" style="background: var(--accent-primary); color: white; padding: 0.8rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: bold;">Open Slides PDF</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Document PDF Viewer -->
+                <div class="card-base" id="pdf-fs-doc" style="flex: 1; padding: 0; border: 2px solid #30363D; overflow: hidden; background: #0D1117; display: flex; flex-direction: column; position: relative;">
+                    <div style="background: #161B22; padding: 0.75rem 1.5rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #30363D; z-index: 2;">
+                        <div style="display: flex; gap: 0.5rem;">
+                            <button class="copy-btn" onclick="prevPdfPage('doc')">
+                                <svg class="svg-icon" style="width: 1rem; height: 1rem;" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg> Prev
+                            </button>
+                            <button class="copy-btn" onclick="nextPdfPage('doc')">
+                                Next <svg class="svg-icon" style="width: 1rem; height: 1rem;" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+                            </button>
+                        </div>
+                        <span id="page_num_doc" style="font-family: 'Fira Code', monospace; color: var(--text-muted); font-size: 0.9rem; font-weight: 600;">Page - / -</span>
+                        <button class="copy-btn fs-expand-btn" onclick="toggleNativeFS('pdf-fs-doc')">
+                            <svg class="svg-icon" style="width: 1rem; height: 1rem;" viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg> Fullscreen
+                        </button>
+                        <button class="copy-btn fs-close-btn" onclick="toggleNativeFS('pdf-fs-doc')" style="display: none;">Close Fullscreen</button>
+                    </div>
+                    <div style="flex: 1; overflow: hidden; display: flex; justify-content: center; align-items: center; background: #06090F; position: relative; padding: 1rem;">
+                        <canvas id="canvas-doc" style="max-width: 100%; max-height: 100%; object-fit: contain; aspect-ratio: 8.5/11;"></canvas>
+                        
+                        <div class="pdf-error-overlay" style="display: none; position: absolute; inset: 0; background: #0D1117; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2rem; z-index: 10;">
+                            <svg class="svg-icon" style="color: var(--accent-warning); width: 3rem; height: 3rem; margin-bottom: 1rem;" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
+                            <p style="color: var(--text-main); font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem;">Local File Security Restriction</p>
+                            <a href="Using Generative AI to Adapt Classroom Resources to Meet Diverse Needs.pdf" target="_blank" style="background: var(--accent-primary); color: white; padding: 0.8rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: bold;">Open Document PDF</a>
                         </div>
                     </div>
                 </div>
@@ -2022,287 +2087,116 @@
 
     <script>
         // ==========================================
-        // SLIDE NAVIGATION LOGIC
+        // PDF.JS INLINE RENDERING LOGIC (MULTIPLE)
         // ==========================================
-        const slides = document.querySelectorAll('.slide');
-        const counter = document.getElementById('slide-counter');
-        const navContainer = document.getElementById('nav-items-container');
-        let currentSlide = 0;
-
-        // Build Navigation Menu
-        navContainer.innerHTML = '';
-        
-        slides.forEach((slide, index) => {
-            let titleText = '';
-            
-            // Override titles for specific slides
-            if (index === 0) {
-                titleText = 'AI Lab';
-            } else if (index === 1) {
-                titleText = 'Objectives';
-            } else if (index === 5) {
-                titleText = 'Top Concern';
-            } else if (index === 6) {
-                titleText = 'AP 142';
-            } else if (index === 7) {
-                titleText = 'Survey Questions';
-            } else {
-                // Pull from the h2 for all other slides
-                const headingEl = slide.querySelector('h2');
-                titleText = headingEl ? headingEl.innerText : `Slide ${index + 1}`;
+        const pdfState = {
+            'main': { 
+                url: 'EIPS_AI_Blueprint.pdf', 
+                pageNum: 1, doc: null, isRendering: false, pendingNum: null, 
+                canvasId: 'the-canvas', displayId: 'page_num', label: 'Slide' 
+            },
+            'slides': { 
+                url: 'Using Generative AI to Adapt Classroom Resources to Meet Diverse Needs SLIDES.pdf', 
+                pageNum: 1, doc: null, isRendering: false, pendingNum: null, 
+                canvasId: 'canvas-slides', displayId: 'page_num_slides', label: 'Slide' 
+            },
+            'doc': { 
+                url: 'Using Generative AI to Adapt Classroom Resources to Meet Diverse Needs.pdf', 
+                pageNum: 1, doc: null, isRendering: false, pendingNum: null, 
+                canvasId: 'canvas-doc', displayId: 'page_num_doc', label: 'Page' 
             }
+        };
+
+        function renderPdfPage(id, num) {
+            const state = pdfState[id];
+            if(!state || !state.doc) return;
+            state.isRendering = true;
             
-            const div = document.createElement('div');
-            div.className = 'nav-item';
-            div.dataset.slideIndex = index;
-            div.innerText = titleText;
-            div.onclick = () => jumpToSlide(index);
-            navContainer.appendChild(div);
-        });
-
-        function updateUI() {
-            slides.forEach((slide, index) => {
-                if (index === currentSlide) slide.classList.add('active');
-                else slide.classList.remove('active');
-            });
-
-            counter.innerText = `${currentSlide + 1}/${slides.length}`;
-
-            document.querySelectorAll('.nav-item').forEach(item => {
-                if (parseInt(item.dataset.slideIndex) === currentSlide) item.classList.add('active');
-                else item.classList.remove('active');
-            });
+            const canvas = document.getElementById(state.canvasId);
+            const ctx = canvas ? canvas.getContext('2d') : null;
+            if(!canvas || !ctx) return;
             
-            const activeNav = document.querySelector('.nav-item.active');
-            if (activeNav) activeNav.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            
-            // Scroll main content to top upon slide change
-            document.getElementById('main-content').scrollTo({ top: 0, behavior: 'auto' });
-        }
-
-        function nextSlide() { if (currentSlide < slides.length - 1) { currentSlide++; updateUI(); } }
-        function prevSlide() { if (currentSlide > 0) { currentSlide--; updateUI(); } }
-
-        function jumpToSlide(slideIndex) {
-            currentSlide = parseInt(slideIndex);
-            updateUI();
-        }
-
-        // Keyboard Event Listeners
-        document.addEventListener('keydown', (e) => {
-            // Allow escape to close fullscreens
-            if (e.key === 'Escape') {
-                if (document.exitFullscreen) document.exitFullscreen();
-                else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
-                return;
-            }
-            
-            // Ignore keypresses if interacting with form inputs or audio/video elements
-            if (['INPUT', 'TEXTAREA', 'BUTTON'].includes(e.target.tagName)) return;
-
-            if (e.key === 'ArrowRight' || (e.key === ' ' && !['AUDIO', 'VIDEO'].includes(e.target.tagName))) { 
-                e.preventDefault(); 
-                nextSlide(); 
-            }
-            else if (e.key === 'ArrowLeft') { 
-                e.preventDefault(); 
-                prevSlide(); 
-            }
-        });
-
-        updateUI();
-
-        // ==========================================
-        // TAB LOGIC (PROMPT ENGINES)
-        // ==========================================
-        function switchTab(btn, demoNum, level) {
-            const engine = btn.closest('.prompt-engine');
-            engine.querySelectorAll('.prompt-tab').forEach(t => t.classList.remove('active'));
-            engine.querySelectorAll('.prompt-content').forEach(c => c.classList.remove('active'));
-            
-            btn.classList.add('active');
-            document.getElementById(`content-${demoNum}-${level}`).classList.add('active');
-        }
-
-        // ==========================================
-        // COPY TO CLIPBOARD LOGIC
-        // ==========================================
-        function copyPrompt(demoNum) {
-            const weakContent = document.querySelector(`#content-${demoNum}-weak`);
-            if(!weakContent) return; // safety check
-            
-            const activeContent = weakContent.parentElement.querySelector('.prompt-content.active');
-            
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = activeContent.innerHTML;
-            const textToCopy = tempDiv.textContent || tempDiv.innerText || "";
-            
-            navigator.clipboard.writeText(textToCopy).then(() => {
-                const btn = activeContent.closest('.prompt-engine').querySelector('.copy-btn');
-                const originalText = btn.innerHTML;
-                
-                btn.classList.add('copied');
-                btn.innerHTML = '✓ Copied!';
-                
-                setTimeout(() => {
-                    btn.classList.remove('copied');
-                    btn.innerHTML = originalText;
-                }, 2000);
-            });
-        }
-
-        // ==========================================
-        // PL INTERACTIVE TIMELINE LOGIC
-        // ==========================================
-        function showPL(id) {
-            // Update Active State on timeline
-            document.querySelectorAll('.pl-item').forEach((el, index) => {
-                if(index + 1 === id) el.classList.add('active');
-                else el.classList.remove('active');
-            });
-            
-            // Show Corresponding Content
-            document.querySelectorAll('.pl-content').forEach((el, index) => {
-                if(index + 1 === id) {
-                    el.style.display = 'block';
-                    // Re-trigger fade animation
-                    el.style.animation = 'none';
-                    el.offsetHeight; /* trigger reflow */
-                    el.style.animation = null; 
-                }
-                else el.style.display = 'none';
-            });
-        }
-
-        // ==========================================
-        // NATIVE FULLSCREEN LOGIC (IMAGES & PDFS)
-        // ==========================================
-        function toggleNativeFS(id) {
-            const elem = document.getElementById(id);
-            if (!elem) return;
-
-            if (!document.fullscreenElement) {
-                if (elem.requestFullscreen) {
-                    elem.requestFullscreen().catch(err => console.log(err));
-                } else if (elem.webkitRequestFullscreen) { /* Safari */
-                    elem.webkitRequestFullscreen();
-                } else if (elem.msRequestFullscreen) { /* IE11 */
-                    elem.msRequestFullscreen();
-                }
-            } else {
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                } else if (document.webkitExitFullscreen) {
-                    document.webkitExitFullscreen();
-                } else if (document.msExitFullscreen) {
-                    document.msExitFullscreen();
-                }
-            }
-        }
-
-        // Hide "Close Fullscreen" button when user presses ESC to leave fullscreen natively
-        document.addEventListener('fullscreenchange', (event) => {
-            const fsBtn = document.querySelector(':fullscreen .fs-close-btn');
-            const hiddenBtns = document.querySelectorAll('.fs-close-btn');
-            if(!document.fullscreenElement) {
-                hiddenBtns.forEach(btn => btn.style.display = 'none');
-            } else if (fsBtn) {
-                fsBtn.style.display = 'flex';
-            }
-        });
-
-        // ==========================================
-        // PDF.JS INLINE RENDERING LOGIC
-        // ==========================================
-        let pdfDoc = null,
-            pageNum = 1,
-            pageIsRendering = false,
-            pageNumPending = null;
-
-        const canvas = document.getElementById('the-canvas');
-        const ctx = canvas ? canvas.getContext('2d') : null;
-
-        function renderPage(num) {
-            if(!pdfDoc || !canvas) return;
-            pageIsRendering = true;
-            
-            pdfDoc.getPage(num).then(page => {
-                // Set scale high for crisp text on larger displays
-                const viewport = page.getViewport({ scale: 2.5 });
+            state.doc.getPage(num).then(page => {
+                // Set scale to ensure crisp text
+                const viewport = page.getViewport({ scale: 2.0 });
                 canvas.height = viewport.height;
                 canvas.width = viewport.width;
 
                 const renderCtx = { canvasContext: ctx, viewport: viewport };
                 page.render(renderCtx).promise.then(() => {
-                    pageIsRendering = false;
-                    if (pageNumPending !== null) {
-                        renderPage(pageNumPending);
-                        pageNumPending = null;
+                    state.isRendering = false;
+                    if (state.pendingNum !== null) {
+                        renderPdfPage(id, state.pendingNum);
+                        state.pendingNum = null;
                     }
                 });
                 
-                const pageNumDisplay = document.getElementById('page_num');
-                if(pageNumDisplay) pageNumDisplay.textContent = `Slide ${num} / ${pdfDoc.numPages}`;
+                const pageNumDisplay = document.getElementById(state.displayId);
+                if(pageNumDisplay) pageNumDisplay.textContent = `${state.label} ${num} / ${state.doc.numPages}`;
             });
         }
 
-        function queueRenderPage(num) {
-            if (pageIsRendering) { pageNumPending = num; } 
-            else { renderPage(num); }
+        function queueRenderPdfPage(id, num) {
+            if (pdfState[id].isRendering) { 
+                pdfState[id].pendingNum = num; 
+            } else { 
+                renderPdfPage(id, num); 
+            }
         }
 
-        function onPrevPage() {
-            if (pageNum <= 1) return;
-            pageNum--;
-            queueRenderPage(pageNum);
+        function prevPdfPage(id) {
+            if (pdfState[id].pageNum <= 1) return;
+            pdfState[id].pageNum--;
+            queueRenderPdfPage(id, pdfState[id].pageNum);
         }
 
-        function onNextPage() {
-            if (pageNum >= pdfDoc.numPages) return;
-            pageNum++;
-            queueRenderPage(pageNum);
+        function nextPdfPage(id) {
+            if (pdfState[id].pageNum >= pdfState[id].doc.numPages) return;
+            pdfState[id].pageNum++;
+            queueRenderPdfPage(id, pdfState[id].pageNum);
         }
 
-        // Load the PDF once window loads
+        // Load the PDFs once window loads
         window.addEventListener('load', () => {
             if(typeof pdfjsLib !== 'undefined') {
-                const pdfUrl = 'EIPS_AI_Blueprint.pdf';
-                // Attempt to fetch the URL to check if it's available and get the blob data to avoid CORS issues
-                fetch(pdfUrl)
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error(`HTTP error! status: ${response.status}`);
-                        }
-                        return response.arrayBuffer();
-                    })
-                    .then(data => {
-                        pdfjsLib.getDocument({data: data}).promise.then(pdfDoc_ => {
-                            pdfDoc = pdfDoc_;
-                            renderPage(pageNum);
-                        }).catch(err => {
-                            console.error("Error loading PDF document:", err);
-                            showPdfError();
+                Object.keys(pdfState).forEach(id => {
+                    const url = pdfState[id].url;
+                    fetch(url)
+                        .then(response => {
+                            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                            return response.arrayBuffer();
+                        })
+                        .then(data => {
+                            pdfjsLib.getDocument({data: data}).promise.then(doc => {
+                                pdfState[id].doc = doc;
+                                renderPdfPage(id, pdfState[id].pageNum);
+                            }).catch(err => {
+                                console.error(`Error loading PDF ${id}:`, err);
+                                showPdfError(id);
+                            });
+                        })
+                        .catch(err => {
+                            console.warn(`Failed to fetch PDF ${id} directly, trying direct document load`, err);
+                            // Fallback: Try loading directly if fetch fails (e.g. some local setups)
+                            pdfjsLib.getDocument(url).promise.then(doc => {
+                                pdfState[id].doc = doc;
+                                renderPdfPage(id, pdfState[id].pageNum);
+                            }).catch(err2 => {
+                                console.error(`PDF.js direct load failed for ${id}.`, err2);
+                                showPdfError(id);
+                            });
                         });
-                    })
-                    .catch(err => {
-                        console.warn("Failed to fetch PDF directly (CORS or missing file), trying direct document load", err);
-                        // Fallback: Try loading directly if fetch fails (e.g. some local setups)
-                        pdfjsLib.getDocument(pdfUrl).promise.then(pdfDoc_ => {
-                            pdfDoc = pdfDoc_;
-                            renderPage(pageNum);
-                        }).catch(err2 => {
-                            console.error("PDF.js direct load failed.", err2);
-                            showPdfError();
-                        });
-                    });
+                });
             }
         });
 
-        function showPdfError() {
-            const errUi = document.getElementById('pdf-error');
-            const canvasUi = document.getElementById('the-canvas');
+        function showPdfError(id) {
+            const canvas = document.getElementById(pdfState[id].canvasId);
+            if(!canvas) return;
+            const container = canvas.parentElement;
+            const errUi = container.querySelector('.pdf-error-overlay');
             if(errUi) errUi.style.display = 'flex';
-            if(canvasUi) canvasUi.style.display = 'none';
+            canvas.style.display = 'none';
         }
 
         // ==========================================
