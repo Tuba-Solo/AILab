@@ -1256,6 +1256,46 @@
         </div>
 
         <!-- ========================================== -->
+        <!-- SOCIAL AND BEHAVIOURAL SUPPORTS            -->
+        <!-- ========================================== -->
+        
+        <div class="slide" data-chapter="8">
+            <div class="subtitle">Targeted Interventions</div>
+            <h2>Social and Behavioural Supports</h2>
+            
+            <div class="grid-2" style="margin-top: 1rem; gap: 2rem;">
+                <div class="card-base" style="border-top: 4px solid var(--accent-primary); padding: 1.8rem;">
+                    <h3 style="color: var(--accent-primary); margin-bottom: 1rem; font-size: 1.4rem;">What AI can do</h3>
+                    <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.6;">
+                        AI can write social stories and scripts that model appropriate behaviour or social interactions. For example, ChatGPT or Gemini can generate a friendly dialogue for greeting a classmate, or a step-by-step story about waiting patiently for a turn. It can also simulate role-play conversations (e.g. a chatbot that plays the part of a peer or teacher).
+                    </p>
+                </div>
+                
+                <div class="card-base" style="border-top: 4px solid var(--accent-secondary); padding: 1.8rem;">
+                    <h3 style="color: var(--accent-secondary); margin-bottom: 1rem; font-size: 1.4rem;">Why it helps</h3>
+                    <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.6;">
+                        Students with autism or social/emotional needs often learn best from concrete, structured stories that explain “what to do” in common situations. Traditionally teachers or aides write these social stories by hand. AI can speed up this process and tailor the language/characters to the student. Social scripts (e.g. explaining how to join a line, or how to ask for help) reduce anxiety and clarify expectations.
+                    </p>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 2rem; margin-bottom: 0.5rem; color: var(--text-main); font-size: 1.3rem;">How to use it (Tools and approach)</h3>
+            <p style="color: var(--text-muted); margin-bottom: 1rem; font-size: 1.05rem;">Prompt ChatGPT or Gemini with a specific scenario to quickly generate a tailored script:</p>
+            
+            <div class="prompt-engine" style="margin-top: 0;">
+                <div class="prompt-header">
+                    <div style="color: var(--text-muted); font-family: 'Fira Code', monospace; font-size: 0.85rem; font-weight: 600;">Scenario Prompt</div>
+                    <button class="copy-btn" onclick="copySimplePrompt('social-story-prompt', this)">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> Copy
+                    </button>
+                </div>
+                <div class="prompt-body">
+                    <div id="social-story-prompt" class="prompt-content active" style="display: block;">Write a social story (simple narrative) about starting the day in high school: including walking into school, going to class, and saying hello to the teacher. Use first-person and simple language.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
         <!-- CHAPTER 9: RESEARCH & RAG                  -->
         <!-- ========================================== -->
 
@@ -1357,7 +1397,7 @@
                         Click to Expand
                     </div>
                     <button class="fs-close-btn" onclick="event.stopPropagation(); toggleNativeFS('info-fs')">×</button>
-                    <img src="SFS_AI_INFOGRAPHIC.png" alt="Generated Infographic" style="width: 100%; height: 100%; object-fit: contain; opacity: 0.95;" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%234B5563\' stroke-width=\'1\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><rect x=\'3\' y=\'3\' width=\'18\' height=\'18\' rx=\'2\' ry=\'2\'/><circle cx=\'8.5\' cy=\'8.5\' r=\'1.5\'/><polyline points=\'21 15 16 10 5 21\'/></svg>'">
+                    <img src="SFS_AI_INFOGRAPHIC.jpg" alt="Generated Infographic" style="width: 100%; height: 100%; object-fit: contain; opacity: 0.95;" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%234B5563\' stroke-width=\'1\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><rect x=\'3\' y=\'3\' width=\'18\' height=\'18\' rx=\'2\' ry=\'2\'/><circle cx=\'8.5\' cy=\'8.5\' r=\'1.5\'/><polyline points=\'21 15 16 10 5 21\'/></svg>'">
                 </div>
                 <div class="card-base" style="flex-shrink: 0; border-top: 4px solid var(--accent-secondary); padding: 1rem 1.5rem; display: flex; align-items: center; gap: 1.5rem;">
                     <div class="card-icon" style="color:var(--accent-secondary); margin: 0;">
@@ -2265,6 +2305,23 @@
                 const btn = activeContent.closest('.prompt-engine').querySelector('.copy-btn');
                 const originalText = btn.innerHTML;
                 
+                btn.classList.add('copied');
+                btn.innerHTML = '✓ Copied!';
+                
+                setTimeout(() => {
+                    btn.classList.remove('copied');
+                    btn.innerHTML = originalText;
+                }, 2000);
+            });
+        }
+
+        function copySimplePrompt(elementId, btn) {
+            const content = document.getElementById(elementId);
+            if(!content) return;
+            const textToCopy = content.textContent || content.innerText || "";
+            
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const originalText = btn.innerHTML;
                 btn.classList.add('copied');
                 btn.innerHTML = '✓ Copied!';
                 
